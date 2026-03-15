@@ -1,67 +1,63 @@
-# ◆ Deal Sourcing
+# Deal Sourcing
 
-AI-powered VC deal sourcing tool. Select an industry, stage, and scoring KPIs — the tool uses Claude with web search to find real startups matching your investment criteria.
+**AI-powered VC deal sourcing tool. Select an industry, stage, and scoring KPIs — Claude searches the web in real-time to find actual startups matching your investment criteria, scores them 0–100, and exports to CSV.**
 
-![Python](https://img.shields.io/badge/Python-3.10+-blue)
-![Streamlit](https://img.shields.io/badge/Streamlit-1.40+-red)
-![Claude API](https://img.shields.io/badge/Claude-Sonnet%204-purple)
+Most deal sourcing is manual: analysts grinding through Crunchbase, PitchBook, and LinkedIn. This tool compresses the top-of-funnel screen into a single query — pick your sector and stage, define what matters, and get scored results in seconds.
+
+![Demo Screenshot](assets/demo-screenshot.png)
+<!-- Replace with actual screenshot -->
+
+**[Try the Live Demo →](your-streamlit-url)**
+
+---
+
+## How It Works
+
+```
+Industry + Stage + KPIs → Claude (with web search) → Scored startup list → CSV export
+```
+
+Each stage (Pre-Seed through Growth) maps to a default set of KPIs relevant to that maturity level. You can add custom KPIs on top. Claude searches the web live, finds real companies, and scores each one 0–100 against your criteria.
+
+**Stack:** Python · Streamlit · Claude Sonnet (Anthropic, web search enabled)
 
 ## Features
 
-- **Stage-mapped KPIs** — Pre-Seed through Growth, each with relevant scoring criteria
-- **Live web research** — Claude searches the web in real-time to find actual companies
-- **KPI match scoring** — Each result scored 0-100 against your selected criteria
-- **CSV export** — Download results for your pipeline/CRM
-- **Custom KPIs** — Add your own scoring criteria on top of defaults
-
-## Quick Start
-
-```bash
-# Clone
-git clone https://github.com/YOUR_USERNAME/deal-sourcing.git
-cd deal-sourcing
-
-# Install
-pip install -r requirements.txt
-
-# Add your API key
-echo 'ANTHROPIC_API_KEY = "sk-ant-your-key-here"' > .streamlit/secrets.toml
-
-# Run
-streamlit run app.py
-```
-
-You'll need an [Anthropic API key](https://console.anthropic.com/).
-
-## Deploy on Streamlit Cloud
-
-1. Push this repo to GitHub
-2. Go to [share.streamlit.io](https://share.streamlit.io)
-3. Connect your GitHub repo
-4. Set main file path: `app.py`
-5. Go to **Settings → Secrets** and add:
-   ```toml
-   ANTHROPIC_API_KEY = "sk-ant-your-key-here"
-   ```
-6. Deploy
+- Stage-mapped KPIs — Pre-Seed through Growth, each with relevant default scoring criteria
+- Live web research — Claude searches in real-time to find actual companies, not synthetic examples
+- KPI match scoring — each result scored 0–100 against your selected criteria
+- CSV export — download results for your pipeline or CRM
+- Custom KPIs — layer your own scoring criteria on top of defaults
 
 ## Project Structure
 
 ```
-deal-sourcing/
-├── .streamlit/
-│   └── config.toml      # Theme & server config
-├── app.py                # Main Streamlit app
-├── config.py             # Industries, stages, KPI mappings
-├── research.py           # Claude API + web search logic
-├── requirements.txt
-└── README.md
+├── app.py           # Main Streamlit app
+├── config.py        # Industries, stages, KPI mappings
+├── research.py      # Claude API + web search logic
+└── requirements.txt
 ```
 
-## Cost
+## Quickstart
 
-Each search costs ~$0.02-0.05 in Claude API usage depending on result count and search depth.
+```bash
+git clone https://github.com/your-repo/deal-sourcing.git
+cd deal-sourcing
+pip install -r requirements.txt
+```
 
-## License
+Add your API key to `.streamlit/secrets.toml`:
 
-MIT
+```toml
+ANTHROPIC_API_KEY = "sk-ant-your-key-here"
+```
+
+```bash
+streamlit run app.py
+```
+
+Each search costs ~$0.02–0.05 in Claude API usage depending on result count and search depth.
+
+## Built By
+
+**[Karan Rajpal](https://www.linkedin.com/in/krajpal/)** — UC Berkeley Haas MBA '25 · LLM Validation @ Handshake AI (OpenAI/Perplexity) · Former 5th hire at Borderless Capital
